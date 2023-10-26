@@ -11,6 +11,7 @@ jobs:
     name: CD
     strategy:
       max-parallel: 1
+      fail-fast: false
       matrix:
         crates: [ timext-month, timext-parts, timext ]
     runs-on: ubuntu-latest
