@@ -2,8 +2,8 @@
 
 [package]
 name = "timext"
+readme = "../README.md"
 
-readme = { workspace = true }
 version = { workspace = true }
 edition = { workspace = true }
 license = { workspace = true }
@@ -41,8 +41,8 @@ rand = ["timext-month/rand", "timext-parts/rand"]
 
 [dependencies]
 time = { version = "0.3.30", default-features = false }
-timext-month = { path = "../timext-month", version = "0.3.0", optional = true }
-timext-parts = { path = "../timext-parts", version = "0.3.0", optional = true }
+timext-month = { path = "../timext-month", version = "0.3.1", optional = true }
+timext-parts = { path = "../timext-parts", version = "0.3.1", optional = true }
 thiserror = "1.0.50"
 
 [dev-dependencies]
