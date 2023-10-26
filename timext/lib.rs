@@ -1,6 +1,7 @@
 #![forbid(unsafe_code)]
 #![cfg_attr(docsrs, feature(doc_cfg))]
-#![doc = include_str!(concat!(env!("CARGO_MANIFEST_DIR"), "/../README.md"))]
+#![cfg_attr(not(docsrs), doc = include_str!("../README.md"))]
+#![cfg_attr(docsrs, doc = include_str!("./README.md"))]
 
 #[cfg(feature = "month")]
 #[cfg_attr(docsrs, doc(cfg(feature = "month")))]

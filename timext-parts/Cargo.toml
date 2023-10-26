@@ -13,10 +13,9 @@ repository = "https://github.com/xwde/time"
 homepage = "https://github.com/xwde/time"
 documentation = "https://docs.rs/timext"
 categories = ["date-and-time", "parser-implementations", "value-formatting"]
-keywords = ["date", "time", "calendar", "duration"]
+keywords = ["date", "time", "partial"]
 description = """
-The collection of time-rs/time extensions for calendar
-arithmetics and incomplete time formats.
+The collection of time-rs/time extensions for incomplete time formats.
 """
 
 [package.metadata.docs.rs]
