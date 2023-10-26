@@ -24,7 +24,7 @@ things `time` crate is not intended for.
   `time::PrimitiveDateTime` and `time::OffsetDateTime` with several methods to
   enable arithmetic operations related to months and years. Additionally,
   attaches conversion methods to `i64` and `f64` to improve ease of use.
-  **Enabled with feature `duration`.**
+  **Enabled with feature `month`.**
 
 ```rust
 use time::{Date, Month::*};
@@ -44,7 +44,7 @@ fn main() {
 - Implements its own `time::Time`, `time::Date`, `time::PrimitiveDateTime`, and
   `time::OffsetDateTime` types, that are convertable from/to original, but allow
   incomplete time formats e.g. `xx:24:xx.845`, `1998-xx-02` or `2016-08 14:xx`.
-  **Enabled with feature `partial`.**
+  **Enabled with feature `parts`.**
 
 > **Warning** : `parsing` & `formatting` are not yet implemented.
 
