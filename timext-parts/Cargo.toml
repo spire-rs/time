@@ -2,7 +2,7 @@
 
 [package]
 name = "timext-parts"
-readme = "../README.md"
+readme = "./README.md"
 
 version = { workspace = true }
 edition = { workspace = true }

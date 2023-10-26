@@ -134,7 +134,7 @@ dependencies = [
 
 [[package]]
 name = "timext"
-version = "0.3.1"
+version = "0.3.2"
 dependencies = [
  "thiserror",
  "time",
@@ -144,7 +144,7 @@ dependencies = [
 
 [[package]]
 name = "timext-month"
-version = "0.3.1"
+version = "0.3.2"
 dependencies = [
  "rand",
  "serde",
@@ -154,7 +154,7 @@ dependencies = [
 
 [[package]]
 name = "timext-parts"
-version = "0.3.1"
+version = "0.3.2"
 dependencies = [
  "rand",
  "serde",

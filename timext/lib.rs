@@ -1,6 +1,6 @@
 #![forbid(unsafe_code)]
 #![cfg_attr(docsrs, feature(doc_cfg))]
-#![cfg_attr(docsrs, doc = include_str!("../README.md"))]
+#![doc = include_str!("./README.md")]
 
 #[cfg(feature = "month")]
 #[cfg_attr(docsrs, doc(cfg(feature = "month")))]
