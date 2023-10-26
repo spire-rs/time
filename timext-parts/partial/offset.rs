@@ -1,6 +1,6 @@
 use time::{Month, OffsetDateTime, PrimitiveDateTime, UtcOffset, Weekday};
 
-use crate::error::{TryFromPartial, PartialVariant};
+use crate::error::{PartialVariant, TryFromPartial};
 use crate::partial::{PartDate, PartPrimitiveDateTime, PartTime, Partial};
 
 /// An [`PartOffsetDateTime`] struct represents a partial [`OffsetDateTime`] struct.
@@ -91,7 +91,10 @@ impl PartOffsetDateTime {
     }
 
     /// Replaces the date and time.
-    pub fn replace_date_time(self, datetime: PartPrimitiveDateTime) -> Result<Self, TryFromPartial> {
+    pub fn replace_date_time(
+        self,
+        datetime: PartPrimitiveDateTime,
+    ) -> Result<Self, TryFromPartial> {
         Ok(Self::new(datetime, self.offset))
     }
 

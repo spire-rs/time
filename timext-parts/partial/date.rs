@@ -1,6 +1,6 @@
 use time::{Date, Month, Weekday};
 
-use crate::error::{TryFromPartial, PartialVariant};
+use crate::error::{PartialVariant, TryFromPartial};
 use crate::partial::{PartPrimitiveDateTime, PartTime, Partial};
 
 /// An [`PartDate`] struct represents an partial [`Date`] struct.

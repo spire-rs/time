@@ -1,6 +1,6 @@
 use time::Time;
 
-use crate::error::{TryFromPartial, PartialVariant};
+use crate::error::{PartialVariant, TryFromPartial};
 use crate::partial::Partial;
 
 /// An [`PartTime`] struct represents a partial [`Time`] struct.
