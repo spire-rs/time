@@ -29,12 +29,12 @@ path = "lib.rs"
 [features]
 default = []
 full = [
-    "duration",
-    "partial",
+    "month",
+    "parts",
 ]
 
-duration = ["dep:timext-month"]
-partial = ["dep:timext-parts"]
+month = ["dep:timext-month"]
+parts = ["dep:timext-parts"]
 
 serde = ["timext-month/serde", "timext-parts/serde"]
 rand = ["timext-month/rand", "timext-parts/rand"]
