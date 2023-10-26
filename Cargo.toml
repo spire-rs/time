@@ -1,0 +1,14 @@
+# https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[workspace]
+resolver = "2"
+members = [
+    "./timext",
+    "./timext-*",
+]
+
+[workspace.package]
+edition = "2021"
+authors = ["Oleh Martsokha <o.martsokha@gmail.com>"]
+license = "MIT"
+version = "0.3.0"
