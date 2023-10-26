@@ -27,8 +27,14 @@ rustdoc-args = ["--cfg", "docsrs"]
 path = "lib.rs"
 
 [features]
-month = ["dep:timext-month"]
-parts = ["dep:timext-parts"]
+default = []
+full = [
+    "duration",
+    "partial",
+]
+
+duration = ["dep:timext-month"]
+partial = ["dep:timext-parts"]
 
 serde = ["timext-month/serde", "timext-parts/serde"]
 rand = ["timext-month/rand", "timext-parts/rand"]
