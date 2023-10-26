@@ -1,4 +1,4 @@
-## timext
+## timext-month
 
 [![Build Status][action-badge]][action-url]
 [![Crate Docs][docs-badge]][docs-url]
