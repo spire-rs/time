@@ -1,10 +1,10 @@
 use time::{Date, Month, Weekday};
 
-use crate::error::{NoComponent, PartRange};
+use crate::error::{TryFromPartial, PartialVariant};
 use crate::partial::{PartPrimitiveDateTime, PartTime, Partial};
 
-/// An `InDate` struct represents an incomplete [Date] struct.
-#[derive(Clone, Copy, Eq, PartialEq, Hash)]
+/// An [`PartDate`] struct represents an partial [`Date`] struct.
+#[derive(Debug, Clone, Copy, Eq, PartialEq, Hash)]
 pub struct PartDate {
     year: Option<i32>,
     month: Option<Month>,
@@ -12,17 +12,17 @@ pub struct PartDate {
 }
 
 impl PartDate {
-    /// Attempts to create a `InDate` from the year, month, and day.
+    /// Attempts to create a [`PartDate`] from the year, month, and day.
     pub fn from_calendar_date(
         year: Option<i32>,
         month: Option<Month>,
         day: Option<u8>,
-    ) -> Result<Self, PartRange> {
+    ) -> Result<Self, TryFromPartial> {
         // TODO: Soundness.
         Ok(Self::from_calendar_date_unchecked(year, month, day))
     }
 
-    /// Creates a `InDate` from its components.
+    /// Creates a [`PartDate`] from its components.
     fn from_calendar_date_unchecked(
         year: Option<i32>,
         month: Option<Month>,
@@ -56,17 +56,17 @@ impl PartDate {
 
 impl PartDate {
     /// Replaces the year.
-    pub fn replace_year(self, year: Option<i32>) -> Result<Self, PartRange> {
+    pub fn replace_year(self, year: Option<i32>) -> Result<Self, TryFromPartial> {
         Self::from_calendar_date(year, self.month(), self.day())
     }
 
     /// Replaces the month of the year.
-    pub fn replace_month(self, month: Option<Month>) -> Result<Self, PartRange> {
+    pub fn replace_month(self, month: Option<Month>) -> Result<Self, TryFromPartial> {
         Self::from_calendar_date(self.year(), month, self.day())
     }
 
     /// Replaces the day of the month.
-    pub fn replace_day(self, day: Option<u8>) -> Result<Self, PartRange> {
+    pub fn replace_day(self, day: Option<u8>) -> Result<Self, TryFromPartial> {
         Self::from_calendar_date(self.year(), self.month(), day)
     }
 }
@@ -88,8 +88,8 @@ impl Partial for PartDate {
         Self::from_calendar_date_unchecked(y, m, d)
     }
 
-    fn into_complete(self) -> Result<Self::Complete, PartRange> {
-        let f = |name: &'static str| -> PartRange { NoComponent::new(name).into() };
+    fn into_complete(self) -> Result<Self::Complete, TryFromPartial> {
+        let f = |name: &'static str| -> TryFromPartial { PartialVariant::new(name).into() };
 
         let y = self.year().ok_or_else(|| f("year"))?;
         let m = self.month().ok_or_else(|| f("month"))?;
@@ -99,7 +99,7 @@ impl Partial for PartDate {
         date.map_err(|e| e.into())
     }
 
-    fn with_fallback(self, fallback: Self::Complete) -> Result<Self, PartRange> {
+    fn with_fallback(self, fallback: Self::Complete) -> Result<Self, TryFromPartial> {
         let y = Some(self.year.unwrap_or(fallback.year()));
         let m = Some(self.month.unwrap_or(fallback.month()));
         let d = Some(self.day.unwrap_or(fallback.day()));
@@ -114,7 +114,7 @@ impl From<Date> for PartDate {
 }
 
 impl TryFrom<PartDate> for Date {
-    type Error = PartRange;
+    type Error = TryFromPartial;
 
     fn try_from(date: PartDate) -> Result<Self, Self::Error> {
         date.into_complete()

@@ -17,7 +17,7 @@ impl NumericCalendarDuration for i64 {
     /// Creates a new `CalendarDuration` with provided months.
     ///
     /// ```rust
-    /// # use timext_month::{CalendarDuration, ext::NumericCalendarDuration};
+    /// # use timext_month::{duration::CalendarDuration, extension::NumericCalendarDuration};
     /// assert_eq!(1.months(), CalendarDuration::months(1));
     /// assert_eq!((-1).months(), CalendarDuration::months(-1));
     /// ```
@@ -28,7 +28,7 @@ impl NumericCalendarDuration for i64 {
     /// Creates a new `CalendarDuration` with provided years.
     ///
     /// ```rust
-    /// # use timext_month::{CalendarDuration, ext::NumericCalendarDuration};
+    /// # use timext_month::{duration::CalendarDuration, extension::NumericCalendarDuration};
     /// assert_eq!(1.years(), CalendarDuration::years(1));
     /// assert_eq!((-1).years(), CalendarDuration::years(-1));
     /// ```
@@ -41,7 +41,7 @@ impl NumericCalendarDuration for f64 {
     /// Creates a new `CalendarDuration` with provided months.
     ///
     /// ```rust
-    /// # use timext_month::{CalendarDuration, ext::NumericCalendarDuration};
+    /// # use timext_month::{duration::CalendarDuration, extension::NumericCalendarDuration};
     /// assert_eq!((1.0).months(), CalendarDuration::months(1));
     /// assert_eq!((-1.0).months(), CalendarDuration::months(-1));
     /// ```
@@ -52,7 +52,7 @@ impl NumericCalendarDuration for f64 {
     /// Creates a new `CalendarDuration` with provided years.
     ///
     /// ```rust
-    /// # use timext_month::{CalendarDuration, ext::NumericCalendarDuration};
+    /// # use timext_month::{duration::CalendarDuration, extension::NumericCalendarDuration};
     /// assert_eq!((1.5).years(), CalendarDuration::months(18));
     /// assert_eq!((-1.5).years(), CalendarDuration::months(-18));
     /// ```

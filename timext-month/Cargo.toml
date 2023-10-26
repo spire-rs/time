@@ -31,7 +31,7 @@ serde = ["dep:serde", "time/serde"]
 rand = ["dep:rand", "time/rand"]
 
 [dependencies]
-time = { version = "0.3.29" }
-thiserror = { version = "1.0.49" }
-serde = { version = "1.0.188", optional = true, default-features = false }
+time = { version = "0.3.30" }
+thiserror = { version = "1.0.50" }
+serde = { version = "1.0.190", optional = true, default-features = false }
 rand = { version = "0.8.5", optional = true, default-features = false }

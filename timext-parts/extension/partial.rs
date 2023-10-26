@@ -2,12 +2,12 @@ use time::{Date, OffsetDateTime, PrimitiveDateTime, Time};
 
 use crate::partial::{PartDate, PartOffsetDateTime, PartPrimitiveDateTime, PartTime, Partial};
 
-/// TODO: Desc.
+/// Converts the complete timestamp into the partial one.
 pub trait IntoPartial {
-    /// TODO: Desc.
+    /// The partial timestamp type that corresponds to the complete timestamp.
     type Partial: Partial;
 
-    /// TODO: Desc.
+    /// Converts the complete timestamp into the partial one.
     fn into_partial(self) -> Self::Partial;
 }
 

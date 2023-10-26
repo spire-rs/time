@@ -1,17 +1,17 @@
 use time::{Month, PrimitiveDateTime, UtcOffset, Weekday};
 
-use crate::error::PartRange;
+use crate::error::TryFromPartial;
 use crate::partial::{PartDate, PartOffsetDateTime, PartTime, Partial};
 
-/// An `InPrimitiveDateTime` struct represents an incomplete [time::PrimitiveDateTime] struct.
-#[derive(Clone, Copy, Eq, PartialEq, Hash)]
+/// An [`PartPrimitiveDateTime`] struct represents an incomplete [`PrimitiveDateTime`] struct.
+#[derive(Debug, Clone, Copy, Eq, PartialEq, Hash)]
 pub struct PartPrimitiveDateTime {
     date: PartDate,
     time: PartTime,
 }
 
 impl PartPrimitiveDateTime {
-    /// Create a new `InPrimitiveDateTime` from the provided `InDate` and `InTime`.
+    /// Create a new [`PartPrimitiveDateTime`] from the provided [`PartDate`] and [`PartTime`].
     pub fn new(date: PartDate, time: PartTime) -> Self {
         Self { date, time }
     }
@@ -81,57 +81,57 @@ impl PartPrimitiveDateTime {
 
 impl PartPrimitiveDateTime {
     /// Replaces the date.
-    pub fn replace_date(self, date: PartDate) -> Result<Self, PartRange> {
+    pub fn replace_date(self, date: PartDate) -> Result<Self, TryFromPartial> {
         Ok(date.with_time(self.time))
     }
 
     /// Replaces the year.
-    pub fn replace_year(self, year: Option<i32>) -> Result<Self, PartRange> {
+    pub fn replace_year(self, year: Option<i32>) -> Result<Self, TryFromPartial> {
         self.replace_date(self.date.replace_year(year)?)
     }
 
     /// Replaces the month of the year.
-    pub fn replace_month(self, month: Option<Month>) -> Result<Self, PartRange> {
+    pub fn replace_month(self, month: Option<Month>) -> Result<Self, TryFromPartial> {
         self.replace_date(self.date.replace_month(month)?)
     }
 
     /// Replaces the day of the month.
-    pub fn replace_day(self, day: Option<u8>) -> Result<Self, PartRange> {
+    pub fn replace_day(self, day: Option<u8>) -> Result<Self, TryFromPartial> {
         self.replace_date(self.date.replace_day(day)?)
     }
 
     /// Returns the time.
-    pub fn replace_time(self, time: PartTime) -> Result<Self, PartRange> {
+    pub fn replace_time(self, time: PartTime) -> Result<Self, TryFromPartial> {
         Ok(self.date.with_time(time))
     }
 
     /// Returns the clock hour.
-    pub fn replace_hour(self, hour: Option<u8>) -> Result<Self, PartRange> {
+    pub fn replace_hour(self, hour: Option<u8>) -> Result<Self, TryFromPartial> {
         self.replace_time(self.time.replace_hour(hour)?)
     }
 
     /// Returns the minute within the hour.
-    pub fn replace_minute(self, minute: Option<u8>) -> Result<Self, PartRange> {
+    pub fn replace_minute(self, minute: Option<u8>) -> Result<Self, TryFromPartial> {
         self.replace_time(self.time.replace_minute(minute)?)
     }
 
     /// Returns the second within the minute.
-    pub fn replace_second(self, second: Option<u8>) -> Result<Self, PartRange> {
+    pub fn replace_second(self, second: Option<u8>) -> Result<Self, TryFromPartial> {
         self.replace_time(self.time.replace_second(second)?)
     }
 
     /// Returns the milliseconds within the second.
-    pub fn replace_millisecond(self, millisecond: Option<u16>) -> Result<Self, PartRange> {
+    pub fn replace_millisecond(self, millisecond: Option<u16>) -> Result<Self, TryFromPartial> {
         self.replace_time(self.time.replace_millisecond(millisecond)?)
     }
 
     /// Returns the microseconds within the second.
-    pub fn replace_microsecond(self, microsecond: Option<u32>) -> Result<Self, PartRange> {
+    pub fn replace_microsecond(self, microsecond: Option<u32>) -> Result<Self, TryFromPartial> {
         self.replace_time(self.time.replace_microsecond(microsecond)?)
     }
 
     /// Returns the nanoseconds within the second.
-    pub fn replace_nanosecond(self, nanosecond: Option<u32>) -> Result<Self, PartRange> {
+    pub fn replace_nanosecond(self, nanosecond: Option<u32>) -> Result<Self, TryFromPartial> {
         self.replace_time(self.time.replace_nanosecond(nanosecond)?)
     }
 }
@@ -159,13 +159,13 @@ impl Partial for PartPrimitiveDateTime {
         Self::new(d, t)
     }
 
-    fn into_complete(self) -> Result<Self::Complete, PartRange> {
+    fn into_complete(self) -> Result<Self::Complete, TryFromPartial> {
         let d = self.date.into_complete()?;
         let t = self.time.into_complete()?;
         Ok(Self::Complete::new(d, t))
     }
 
-    fn with_fallback(self, fallback: Self::Complete) -> Result<Self, PartRange> {
+    fn with_fallback(self, fallback: Self::Complete) -> Result<Self, TryFromPartial> {
         let d = self.date.with_fallback(fallback.date())?;
         let t = self.time.with_fallback(fallback.time())?;
         Ok(Self::new(d, t))
@@ -179,7 +179,7 @@ impl From<PrimitiveDateTime> for PartPrimitiveDateTime {
 }
 
 impl TryFrom<PartPrimitiveDateTime> for PrimitiveDateTime {
-    type Error = PartRange;
+    type Error = TryFromPartial;
 
     fn try_from(datetime: PartPrimitiveDateTime) -> Result<Self, Self::Error> {
         datetime.into_complete()

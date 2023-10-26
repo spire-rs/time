@@ -222,7 +222,7 @@ mod tests {
     use time::Month::*;
 
     use crate::duration::CalendarDuration;
-    use crate::ext::CalendarExtension;
+    use crate::extension::CalendarExtension;
 
     #[test]
     fn add_underflow() {
