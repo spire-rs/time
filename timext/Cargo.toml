@@ -1,0 +1,49 @@
+# https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[package]
+name = "timext"
+
+readme = { workspace = true }
+version = { workspace = true }
+edition = { workspace = true }
+license = { workspace = true }
+authors = { workspace = true }
+
+repository = "https://github.com/xwde/time"
+homepage = "https://github.com/xwde/time"
+documentation = "https://docs.rs/timext"
+categories = ["date-and-time", "parser-implementations", "value-formatting"]
+keywords = ["date", "time", "calendar", "duration"]
+description = """
+The collection of time-rs/time extensions for calendar
+arithmetics and incomplete time formats.
+"""
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+[lib]
+path = "lib.rs"
+
+[features]
+default = []
+full = [
+    "month",
+    "parts",
+]
+
+month = ["dep:timext-month"]
+parts = ["dep:timext-parts"]
+
+serde = ["timext-month/serde", "timext-parts/serde"]
+rand = ["timext-month/rand", "timext-parts/rand"]
+
+[dependencies]
+time = { version = "0.3.30", default-features = false }
+timext-month = { path = "../timext-month", version = "0.3.0", optional = true }
+timext-parts = { path = "../timext-parts", version = "0.3.0", optional = true }
+thiserror = "1.0.50"
+
+[dev-dependencies]
+time = { version = "0.3.30" }
