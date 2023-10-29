@@ -17,7 +17,7 @@
 [coverage-url]: https://app.codecov.io/gh/xwde/time
 
 The collection of [time-rs/time](https://github.com/time-rs/time/) extensions
-for calendar arithmetics, incomplete formats handling, imprecise time, and other
+for calendar arithmetics, partial formats handling, imprecise time, and other
 things `time` crate is not intended for.
 
 For details, see the [main](https://crates.io/crates/timext) crate.

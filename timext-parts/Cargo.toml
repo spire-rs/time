@@ -30,8 +30,8 @@ serde = ["dep:serde", "time/serde"]
 rand = ["dep:rand", "time/rand"]
 
 [dependencies]
-time = { version = "0.3.30" }
-thiserror = { version = "1.0.50" }
+time = { workspace = true }
+thiserror = { workspace = true }
 
-serde = { version = "1.0.190", optional = true, default-features = false }
-rand = { version = "0.8.5", optional = true, default-features = false }
+serde = { workspace = true, optional = true }
+rand = { workspace = true, optional = true }
