@@ -1,11 +1,8 @@
 //! Various error types returned by methods in the crate.
 
-use thiserror::Error;
-use time::error::ComponentRange;
-
 /// An error type indicating that an expected component was not found,
 /// causing a conversion failure.
-#[derive(Debug, Error)]
+#[derive(Debug, thiserror::Error)]
 #[error("component `{name}` was not found")]
 pub struct PartialVariant {
     /// Name of the component.
@@ -26,7 +23,7 @@ impl PartialVariant {
 
 /// An error type indicating that an expected component was not found or
 /// was out of range, causing a conversion failure.
-#[derive(Debug, Error)]
+#[derive(Debug, thiserror::Error)]
 pub enum TryFromPartial {
     /// Missing part.
     #[error("partial component: {0}")]
@@ -34,5 +31,5 @@ pub enum TryFromPartial {
 
     /// Out of range,
     #[error("out of range: {0}")]
-    ComponentRange(#[from] ComponentRange),
+    ComponentRange(#[from] time::error::ComponentRange),
 }

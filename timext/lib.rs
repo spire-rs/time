@@ -2,18 +2,18 @@
 #![cfg_attr(docsrs, feature(doc_cfg))]
 #![doc = include_str!("./README.md")]
 
-#[cfg(feature = "month")]
+#[cfg(feature = "duration")]
 #[cfg_attr(docsrs, doc(cfg(feature = "month")))]
 pub use timext_month::duration;
 
-#[cfg(feature = "parts")]
+#[cfg(feature = "partial")]
 #[cfg_attr(docsrs, doc(cfg(feature = "parts")))]
 pub use timext_parts::partial;
 
 pub mod error {
     //! Various error types returned by methods in the crate.
 
-    #[cfg(feature = "parts")]
+    #[cfg(feature = "partial")]
     #[cfg_attr(docsrs, doc(cfg(feature = "parts")))]
     pub use timext_parts::error::*;
 
@@ -27,7 +27,7 @@ pub mod error {
         Base(time::Error),
 
         /// Partial conversion error.
-        #[cfg(feature = "parts")]
+        #[cfg(feature = "partial")]
         #[error("{0}")]
         TryFromPartial(TryFromPartial),
     }
@@ -42,11 +42,11 @@ pub mod error {
 pub mod ext {
     //! Extension traits.
 
-    #[cfg(feature = "month")]
+    #[cfg(feature = "duration")]
     #[cfg_attr(docsrs, doc(cfg(feature = "month")))]
     pub use timext_month::extension::*;
 
-    #[cfg(feature = "parts")]
+    #[cfg(feature = "partial")]
     #[cfg_attr(docsrs, doc(cfg(feature = "parts")))]
     pub use timext_parts::extension::*;
 }

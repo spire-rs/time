@@ -23,7 +23,7 @@ impl<'de> Deserialize<'de> for CalendarDuration {
             type Value = CalendarDuration;
 
             fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
-                formatter.write_str("a `MonthDuration`")
+                formatter.write_str("struct `MonthDuration`")
             }
 
             fn visit_seq<A>(self, mut seq: A) -> Result<Self::Value, A::Error>
